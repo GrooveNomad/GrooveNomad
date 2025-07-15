@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function FeaturesSection() {
   return (
-    <section className="bg-gray-50 py-16 md:py-32 dark:bg-transparent">
+    <section id="services" className="bg-gray-50 py-16 md:py-32 dark:bg-transparent">
       <div className="mx-auto max-w-5xl px-6">
         <div className="relative">
           <div className="text-center">
