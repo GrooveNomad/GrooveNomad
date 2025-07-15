@@ -7,9 +7,9 @@ import React from "react";
 import { cn } from "@/lib/utils";
 
 const menuItems = [
-  { name: "Le service", href: "#link" },
+  { name: "Le service", href: "#services" },
   { name: "Les expériences", href: "#link" },
-  { name: "Les avis", href: "#link" },
+  { name: "Les avis", href: "#avis" },
 ];
 
 export const HeroHeader = () => {
@@ -100,11 +100,7 @@ export const HeroHeader = () => {
                   asChild
                   size="sm"
                   className={cn(isScrolled ? "lg:inline-flex" : "hidden")}
-                >
-                  <Link href="#">
-                    <span>Commencer</span>
-                  </Link>
-                </Button>
+                ></Button>
               </div>
             </div>
           </div>
