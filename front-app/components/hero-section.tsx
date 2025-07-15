@@ -5,25 +5,25 @@ import { TextEffect } from "@/components/ui/text-effect";
 import { AnimatedGroup } from "@/components/ui/animated-group";
 import { HeroHeader } from "./header";
 
-const transitionVariants = {
-  item: {
-    hidden: {
-      opacity: 0,
-      filter: "blur(12px)",
-      y: 12,
-    },
-    visible: {
-      opacity: 1,
-      filter: "blur(0px)",
-      y: 0,
-      transition: {
-        type: "spring",
-        bounce: 0.3,
-        duration: 1.5,
-      },
-    },
-  },
-};
+// const transitionVariants = {
+//   item: {
+//     hidden: {
+//       opacity: 0,
+//       filter: "blur(12px)",
+//       y: 12,
+//     },
+//     visible: {
+//       opacity: 1,
+//       filter: "blur(0px)",
+//       y: 0,
+//       transition: {
+//         type: "spring",
+//         bounce: 0.3,
+//         duration: 1.5,
+//       },
+//     },
+//   },
+// };
 
 export default function HeroSection() {
   return (
@@ -40,7 +40,7 @@ export default function HeroSection() {
                 as="h1"
                 className="text-balance text-5xl font-medium md:text-6xl"
               >
-                Ton aventure commence là où la musique t'appelle.
+                Ton aventure commence là où la musique t’appelle.
               </TextEffect>
               <TextEffect
                 per="line"
@@ -65,7 +65,23 @@ export default function HeroSection() {
                       },
                     },
                   },
-                  ...transitionVariants,
+                  item: {
+                    hidden: {
+                      opacity: 0,
+                      filter: "blur(12px)",
+                      y: 12,
+                    },
+                    visible: {
+                      opacity: 1,
+                      filter: "blur(0px)",
+                      y: 0,
+                      transition: {
+                        type: "spring",
+                        bounce: 0.3,
+                        duration: 1.5,
+                      },
+                    },
+                  },
                 }}
                 className="mt-12"
               >
@@ -74,7 +90,7 @@ export default function HeroSection() {
                     <PartyPopper className="pointer-events-none absolute inset-y-0 left-4 my-auto size-4" />
 
                     <input
-                      placeholder="Décrire mon envie..."
+                      placeholder="Décrire mon envie…"
                       className="h-12 w-full bg-transparent pl-12 focus:outline-none"
                       type="email"
                     />
@@ -115,7 +131,6 @@ export default function HeroSection() {
             </div>
           </div>
         </section>
-        {/* <LogoCloud /> */}
       </main>
     </>
   );
@@ -147,7 +162,7 @@ const AppComponent = () => {
       </div>
       <div className="space-y-3">
         <div className="text-foreground border-b border-white/10 pb-3 text-sm font-medium">
-          This year, you're walking more on average than you did in 2023.
+          This year, you’re walking more on average than you did in 2023.
         </div>
         <div className="space-y-3">
           <div className="space-y-1">
