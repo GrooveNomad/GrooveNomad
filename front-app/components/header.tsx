@@ -5,6 +5,7 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import React from "react";
 import { cn } from "@/lib/utils";
+import { useRouter } from "next/navigation";
 
 const menuItems = [
   { name: "Le service", href: "#services" },
@@ -15,6 +16,7 @@ const menuItems = [
 export const HeroHeader = () => {
   const [menuState, setMenuState] = React.useState(false);
   const [isScrolled, setIsScrolled] = React.useState(false);
+  const router = useRouter();
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -23,6 +25,11 @@ export const HeroHeader = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const onClick = () => {
+    router.push("/chat");
+  };
+
   return (
     <header>
       <nav
@@ -88,19 +95,20 @@ export const HeroHeader = () => {
               </div>
               <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
                 <Button
-                  asChild
+                  onClick={() => onClick()}
                   size="sm"
-                  className={cn(isScrolled && "lg:hidden")}
+                  className="lg:hidden"
                 >
-                  <Link href="#">
-                    <span>Commencer</span>
-                  </Link>
+                  Commencer
                 </Button>
+
                 <Button
-                  asChild
+                  onClick={() => onClick()}
                   size="sm"
-                  className={cn(isScrolled ? "lg:inline-flex" : "hidden")}
-                ></Button>
+                  className="hidden lg:inline-flex"
+                >
+                  Commencer
+                </Button>
               </div>
             </div>
           </div>
