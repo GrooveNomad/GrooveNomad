@@ -1,29 +1,23 @@
-const endpoints: Record<string, string> = {
-  festivals: process.env.MAKE_FESTIVALS_URL ?? "",
-  hebergements: process.env.MAKE_HEBERGEMENTS_URL ?? "",
-  transports: process.env.MAKE_TRANSPORTS_URL ?? ""
+const endpoints = {
+  "getFestivals": process.env.MAKE_FESTIVAL_URL!,
+  "getHebergements": process.env.MAKE_HEBERGEMENT_URL!,
+  "getTransports": process.env.MAKE_TRANSPORT_URL!
 };
 
-export async function callMake<T extends object>(
-  endpoint: keyof typeof endpoints,
-  payload: Record<string, unknown>
-): Promise<T> {
-  const url = endpoints[endpoint];
-
-  if (!url) {
-    throw new Error(`Missing Make webhook URL for ${endpoint}`);
-  }
-
-  const res = await fetch(url, {
+export async function callMake<T>(endpoint: keyof typeof endpoints, args: any): Promise<T> {
+  console.log("Calling Make endpoint:", endpoint, "with args:", args); // Debugging line
+  const res = await fetch(endpoints[endpoint], {
     method: "POST",
-    headers: { "content-type": "application/json" },
-    body: JSON.stringify(payload),
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(args)
   });
-
-  if (!res.ok) {
-    console.error("Make error", await res.text());
-    throw new Error(`Make call to ${endpoint} failed`);
+  // console.log("Make response:", res.status, await res.json()); // Debugging line
+  let parsed;
+  try {
+    parsed = JSON.parse(await res.text());
+  } catch (e : any) {
+    console.error("❌ JSON parse error:", e);
+    throw new Error("JSON parse error: " + e.message + " | Data: " + await res.text());
   }
-
-  return res.json() as Promise<T>;
+  return parsed;
 }
