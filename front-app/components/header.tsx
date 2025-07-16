@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 
 const menuItems = [
   { name: "Le service", href: "#services" },
-  { name: "Les expériences", href: "#link" },
+  { name: "Les expériences", href: "#experiences" },
   { name: "Les avis", href: "#avis" },
 ];
 
