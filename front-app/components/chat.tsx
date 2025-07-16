@@ -1,17 +1,28 @@
 "use client";
 
+import { useEffect } from "react";
 import { useChat } from "ai/react";
+import { Chat } from "./ui/chat";
 
-import { Chat } from "@/components/ui/chat";
+export default function ChatDemo({
+  initialMessage,
+}: {
+  initialMessage?: string;
+}) {
+  const {
+    messages,
+    input,
+    handleInputChange,
+    handleSubmit,
+    append,
+    isLoading,
+  } = useChat();
 
-export default function ChatDemo() {
-  const { messages, input, handleInputChange, handleSubmit, status, stop, } =
-    useChat({
-      api: "/api/chat",
-      maxSteps: 2
-    });
-
-  const isLoading = status === "submitted" || status === "streaming";
+  useEffect(() => {
+    if (initialMessage && append) {
+      append({ role: "user", content: initialMessage });
+    }
+  }, [initialMessage, append]);
 
   return (
     <Chat

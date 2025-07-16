@@ -1,8 +1,8 @@
 import { openai } from "@ai-sdk/openai";
 import { streamText } from "ai";
-import { tools } from "@/lib/tools";  // votre objet de 3 tools
+import { tools } from "@/lib/tools"; // votre objet de 3 tools
 
-export const maxDuration = 30;       // timeout en secondes
+export const maxDuration = 30; // timeout en secondes
 
 export async function POST(req: Request) {
   // 1) Récupération des messages
@@ -13,7 +13,7 @@ export async function POST(req: Request) {
 
   // 2) Lancement du streamText avec vos tools et system prompt
   const result = await streamText({
-    model: openai("o4-mini-2025-04-16"),  // ou "o4-mini-2025-04-16" si vous préférez
+    model: openai("o4-mini-2025-04-16"), // ou "o4-mini-2025-04-16" si vous préférez
     system: `
 Tu es un assistant intelligent et sympathique qui aide l’utilisateur à organiser un voyage pour un festival de musique, en le tutoyant et en gardant toujours un ton agréable et bienveillant.
 À chaque étape, guide l’utilisateur très précisément, une question à la fois, en respectant scrupuleusement l’ordre suivant :
@@ -63,10 +63,10 @@ Règles :
 	•	Récapitule toujours à l’utilisateur la décision prise à chaque étape, de manière concise et claire, avant de passer à la suite.
 	•	Sois bienveillant, enthousiaste, professionnel, et tutoie l’utilisateur en toutes circonstances.Ta mission est que l’utilisateur se sente accompagné, rassuré et que toutes ses préférences soient validées étape par étape, avec clarté et gentillesse.`.trim(),
     messages,
-    tools,            // **votre** objet tools issu de lib/tools.ts
-    toolChoice: "auto",// l'IA décide quand appeler vos fonctions
-    maxSteps : 10,
-    experimental_continueSteps : true,
+    tools, // **votre** objet tools issu de lib/tools.ts
+    toolChoice: "auto", // l'IA décide quand appeler vos fonctions
+    maxSteps: 10,
+    experimental_continueSteps: true,
     onStepFinish: (step) => {
       console.log("Step finished");
     },
@@ -76,4 +76,3 @@ Règles :
   // console.log(result.steps)
   return result.toDataStreamResponse();
 }
-
