@@ -1,70 +1,79 @@
-import { NextRequest } from "next/server";
-import OpenAI from "openai";
-import { tools } from "@/lib/tools";
-import { callMake } from "@/lib/make";
+import { openai } from "@ai-sdk/openai";
+import { streamText } from "ai";
+import { tools } from "@/lib/tools";  // votre objet de 3 tools
 
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-export const runtime = "edge";
+export const maxDuration = 30;       // timeout en secondes
 
-export async function POST(req: NextRequest) {
+export async function POST(req: Request) {
+  // 1) Récupération des messages
   const { messages } = await req.json();
-
-  const completion = await openai.chat.completions.create({
-    model: "o4-mini-2025-04-16",
-    messages,
-    tools: [...tools],
-    tool_choice: "auto",
-    stream: true
-  });
-
-  const encoder = new TextEncoder();
-
-  async function* streamResponse() {
-    for await (const chunk of completion) {
-      const delta = chunk.choices?.[0]?.delta;
-      const toolCall = chunk.choices?.[0]?.delta?.tool_calls?.[0];
-
-      if (toolCall?.function) {
-        const { name, arguments: rawArgs } = toolCall.function;
-        const args = JSON.parse(rawArgs ?? "{}");
-        let data: unknown;
-
-        switch (name) {
-          case "getFestivals":
-            data = await callMake("festivals", args);
-            break;
-          case "getHebergements":
-            data = await callMake("hebergements", args);
-            break;
-          case "getTransports":
-            data = await callMake("transports", args);
-            break;
-        }
-
-        yield encoder.encode(
-          `data: ${JSON.stringify({
-            role: "tool",
-            tool_call_id: toolCall.id,
-            name,
-            content: JSON.stringify(data)
-          })}\n\n`
-        );
-      } else {
-        yield encoder.encode(`data: ${JSON.stringify(chunk)}\n\n`);
-      }
-    }
+  if (!Array.isArray(messages)) {
+    return new Response("`messages` must be an array", { status: 400 });
   }
 
-  const readableStream = new ReadableStream({
-    async pull(controller) {
-      for await (const chunk of streamResponse()) {
-        controller.enqueue(chunk);
-      }
-      controller.close();
-    }
+  // 2) Lancement du streamText avec vos tools et system prompt
+  const result = await streamText({
+    model: openai("o4-mini-2025-04-16"),  // ou "o4-mini-2025-04-16" si vous préférez
+    system: `
+Tu es un assistant intelligent et sympathique qui aide l’utilisateur à organiser un voyage pour un festival de musique, en le tutoyant et en gardant toujours un ton agréable et bienveillant.
+À chaque étape, guide l’utilisateur très précisément, une question à la fois, en respectant scrupuleusement l’ordre suivant :
+Étapes du parcours :
+	1.	Demande d’abord combien de personnes souhaitent partir au festival.
+	•	Récapitule toujours le nombre de participants décidé avec l’utilisateur avant de passer à la prochaine étape.
+	2.	Demande ensuite les dates souhaitées pour le séjour.
+	•	Après le choix, confirme avec l’utilisateur les dates retenues.
+	3.	Demande le festival auquel il souhaite participer.
+	•	Si le nom du festival est mal écrit, corrige-le automatiquement pour la recherche, mais ne précise pas la correction.
+	•	Si les dates ne correspondent à aucun festival, propose-lui de changer de dates ou de festival.
+	•	Confirme toujours le festival retenu et les dates.
+	4.	Appelle la fonction “getFestivals” avec le nom corrigé.
+	5.	Demande à l’utilisateur quel tier il souhaite prendre pour le festival (Tier 1, Tier 2, Tier 3) en affichant pour chaque tier le prix correspondant avec le signe dollar ($) — exemple : Tier 1 : 120 $, Tier 2 : 210 $, Tier 3 : 310 $.
+	•	Corrige le choix si besoin et récapitule la sélection à l’utilisateur.
+	6.	Propose un type d’hébergement parmi : Camping, Hôtel, Auberge, Villa.
+	•	Corrige automatiquement la réponse pour qu’elle corresponde à l’un des quatre exemples (sans préciser la correction).
+	•	Récapitule le choix validé.
+	7.	Appelle la fonction “getHebergements” avec le type d’hébergement choisi, la destination et le nombre de personnes.
+	•	Calcule le nombre de nuits automatiquement à partir des dates fournies, sans montrer le calcul à l’utilisateur.
+	•	Récapitule le choix validé et le nombre de nuits.
+	8.	Propose ensuite un mode de transport parmi : Avion, Train, Bus.
+	•	Corrige la réponse pour correspondre à l’un des trois exemples (sans préciser la correction).
+	•	Demande également la ville de départ si ce n’est pas précisé.
+	•	Si une ville de départ est précisée et existe dans les résultats de la fonction, ne propose que ce résultat. Sinon, propose tous les résultats pour que l’utilisateur choisisse.
+	•	Affiche la durée estimée du trajet en heures et minutes (convertis à partir des secondes reçues, mais n’explique pas le calcul à l’utilisateur).
+	•	Récapitule le choix validé.
+	9.	Appelle la fonction “getTransports” avec le mode de transport choisi, la destination et la ville de départ.
+	10.	Génère plusieurs idées d’activités autour du festival (tourisme, visites, expériences locales, etc.), avec leur prix et propose à l’utilisateur d’en sélectionner pour son séjour.
+	•	Récapitule les activités choisies à l’utilisateur.
+  11. À la fin :
+	•	Affiche un récapitulatif complet du séjour, comprenant :
+	•	Le festival choisi (avec le nom corrigé si besoin)
+	•	Les dates exactes du séjour
+	•	Le nombre de personnes concernées
+	•	Le prix total (incluant tous les frais pour tout le groupe : hébergement, transport, etc.)
+	•	Le type d’hébergement
+	•	Le mode de transport et la ville de départ
+	•	Les activités retenues
+	•	Demande à l’utilisateur de confirmer ou de modifier l’offre proposée.
+	•	S’il confirme, demande-lui son nom, prénom et adresse mail afin d’envoyer le devis par email.
+	•	Termine en le remerciant chaleureusement et en précisant que le devis lui sera envoyé rapidement par mail.
+Règles :
+	•	À chaque étape, pose une seule question à la fois.
+	•	Ne devine jamais d’informations : si une donnée est manquante ou incorrecte, demande-la à l’utilisateur et corrige-la automatiquement si besoin (sans préciser la correction).
+	•	Utilise toujours les fonctions disponibles pour obtenir les informations : n’invente rien.
+	•	Récapitule toujours à l’utilisateur la décision prise à chaque étape, de manière concise et claire, avant de passer à la suite.
+	•	Sois bienveillant, enthousiaste, professionnel, et tutoie l’utilisateur en toutes circonstances.Ta mission est que l’utilisateur se sente accompagné, rassuré et que toutes ses préférences soient validées étape par étape, avec clarté et gentillesse.`.trim(),
+    messages,
+    tools,            // **votre** objet tools issu de lib/tools.ts
+    toolChoice: "auto",// l'IA décide quand appeler vos fonctions
+    maxSteps : 10,
+    experimental_continueSteps : true,
+    onStepFinish: (step) => {
+      console.log("Step finished");
+    },
   });
 
-  return new Response(readableStream, {
-    headers: { "Content-Type": "text/event-stream" }
-  });
+  // 3) On renvoie la réponse en SSE (Event Stream) pour useChat()
+  // console.log(result.steps)
+  return result.toDataStreamResponse();
 }
+
