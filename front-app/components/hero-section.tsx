@@ -16,7 +16,7 @@ export default function HeroSection() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!inputValue.trim()) return;
-    router.push("/chat");
+    router.push(`/chat?message=${encodeURIComponent(inputValue)}`);
   };
 
   return (
