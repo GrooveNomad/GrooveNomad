@@ -1,6 +1,7 @@
 import { openai } from "@ai-sdk/openai";
 import { streamText } from "ai";
 import { tools } from "@/lib/tools";  // votre objet de 3 tools
+import { FilePreview } from '../../../components/ui/file-preview';
 
 export const maxDuration = 30;       // timeout en secondes
 
@@ -54,10 +55,32 @@ Tu es un assistant intelligent et sympathique qui aide l’utilisateur à organi
 	•	Le mode de transport et la ville de départ
 	•	Les activités retenues
 	•	Demande à l’utilisateur de confirmer ou de modifier l’offre proposée.
-	•	S’il confirme, demande-lui son nom, prénom et adresse mail afin d’envoyer le devis par email.
-	•	Termine en le remerciant chaleureusement et en précisant que le devis lui sera envoyé rapidement par mail.
+	•	S’il confirme, demande-lui son nom, prénom et adresse mail.
+  12. Une fois que tu as toutes les informations, prépare l’objet JSON suivant (remplis chaque champ avec les valeurs appropriées choisies ou calculées) :
+    {
+  "Festivals": ["recFESTIVALID"],        // ID du record Festival Airtable (array)
+  "Destination": ["recDESTINATIONID"],   // ID du record Destination Airtable (array)
+  "Date arrivée": "YYYY-MM-DD",          // Date d’arrivée au format YYYY-MM-DD
+  "Date départ": "YYYY-MM-DD",           // Date de départ au format YYYY-MM-DD
+  "Nom d'utilisateur": "NOM Prénom",
+  "Adresse e-mail": "adresse@email.com",
+  "Hébergement": ["recHEBERGEMENTID"],   // ID du record Hébergement Airtable (array)
+  "Transport": ["recTRANSPORTID"],       // ID du record Transport Airtable (array)
+  "nombre de personnes": 2,              // Nombre de participants (nombre entier)
+  "Prix activité HU HT": 120,            // Total des activités en euros par personne (nombre)
+  "Prix festival HU HT": 210,            // Prix du festival par personne(nombre)
+  "activité - iA": "Activité 1, activité 2" // Liste d’activités choisies (texte)
+}
+  13. Appelle la fonction "sendProposition" avec l’objet JSON créé.
+  14. Si tu reçois une réponse contenant une URL de fichier PDF de devis (par exemple dans une clé “devis”), présente cette URL à l’utilisateur sous la forme d’un lien clairement identifiable, par exemple :
+[Télécharger mon devis PDF](URL)
+ou
+un bouton ou lien intitulé “Voir mon devis PDF”.
+Le lien doit être bien visible et facile à cliquer. Rappelle à l'utilisateur qu'il recevra également un e-mail de confirmation avec le devis.
+
 Règles :
 	•	À chaque étape, pose une seule question à la fois.
+	•	Ne réponds pas à des questions qui n'ont pas de rapport avec l'organisation du voyage.
 	•	Ne devine jamais d’informations : si une donnée est manquante ou incorrecte, demande-la à l’utilisateur et corrige-la automatiquement si besoin (sans préciser la correction).
 	•	Utilise toujours les fonctions disponibles pour obtenir les informations : n’invente rien.
 	•	Récapitule toujours à l’utilisateur la décision prise à chaque étape, de manière concise et claire, avant de passer à la suite.
@@ -68,7 +91,6 @@ Règles :
     maxSteps : 10,
     experimental_continueSteps : true,
     onStepFinish: (step) => {
-      console.log("Step finished");
     },
   });
 

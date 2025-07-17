@@ -1,11 +1,11 @@
 const endpoints = {
   "getFestivals": process.env.MAKE_FESTIVAL_URL!,
   "getHebergements": process.env.MAKE_HEBERGEMENT_URL!,
-  "getTransports": process.env.MAKE_TRANSPORT_URL!
+  "getTransports": process.env.MAKE_TRANSPORT_URL!,
+  "sendProposition": process.env.MAKE_PROPOSITION_URL!
 };
 
 export async function callMake<T>(endpoint: keyof typeof endpoints, args: any): Promise<T> {
-  console.log("Calling Make endpoint:", endpoint, "with args:", args); // Debugging line
   const res = await fetch(endpoints[endpoint], {
     method: "POST",
     headers: { "Content-Type": "application/json" },
