@@ -19,6 +19,7 @@ export const HeroHeader = () => {
   { name: t('menu.service'), href: "#services" },
   { name: t('menu.experiences'), href: "#experiences" },
   { name: t('menu.avis'), href: "#avis" },
+  { name: t('menu.faq'), href: "#faq" },
 ];
 
 
