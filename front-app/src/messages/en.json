@@ -1,0 +1,192 @@
+{
+  "header": {
+    "menu": {
+      "service": "Service",
+      "experiences": "Experiences",
+      "avis": "Reviews"
+    },
+    "buttons": {
+      "start": "Get started"
+    },
+    "aria": {
+      "open": "Open menu",
+      "close": "Close menu"
+    }
+  },
+  "hero": {
+    "title": "Your adventure starts where music calls you.",
+    "subtitle": "Every festival is a gateway to a new culture. GrooveNomad takes you on a musical and human adventure, designed just for you.",
+    "inputPlaceholder": "Describe what you want...",
+    "sendButton": "Send",
+    "heroImageAlt": "GrooveNomad illustration"
+  },
+  "features": {
+    "title": "How does it work?",
+    "subtitle": "A simple and efficient process for an unforgettable travel experience.",
+    "cards": [
+      {
+        "title": "A 100% tailor-made trip",
+        "desc": "Your wishes, your style, your budget. GrooveNomad offers you a fully personalized adventure, from the festival vibe to your lodging and local experiences.",
+        "imageAlt": "Custom map"
+      },
+      {
+        "title": "A new way to plan your trip",
+        "desc": "No more endless searching. Chat with our bot, it gets to know you and builds your ideal stay in just a few minutes.",
+        "imageAlt": "Custom map"
+      },
+      {
+        "title": "Carefully selected festivals",
+        "desc": "We only offer you the best. Festivals renowned for their atmosphere, their line-up, and their accessibility, all over Europe (and soon beyond).",
+        "imageAlt": "Custom map"
+      },
+      {
+        "title": "Fast response and instant quote",
+        "desc": "No need to wait for an agent. Once you’ve shared your wishes, you get a complete proposal (journeys, lodging, options) that’s clear and editable.",
+        "imageAlt": "Instant quote illustration"
+      },
+      {
+        "title": "Seamless support up to departure",
+        "desc": "Your trip is in good hands. Your personal space lets you track your booking, ask questions, and adjust your stay until the last moment.",
+        "imageAlt": "Instant quote illustration"
+      }
+    ]
+  },
+  "gallery": {
+    "title": "GrooveNomad experiences",
+    "description": "Discover unique festivals around the world — each destination is a cultural, musical, and human immersion.",
+    "festivals": [
+      {
+        "title": "🪩 Tomorrowland – Belgium",
+        "desc": "One of the world's biggest electronic festivals, famous for its spectacular stages, magical vibe, and legendary line-up in a small Belgian town.",
+        "href": "https://www.tomorrowland.com",
+        "image": "https://prismic-assets-cdn.tomorrowland.com/aG-GtUMqNJQqHvz3_16_9.png?crop=2880,2160,480,0&width=1440&height=1080"
+      },
+      {
+        "title": "🌇 Sónar – Barcelona, Spain",
+        "desc": "A festival of electronic music, digital art, and technological innovation in the heart of Barcelona. A must for fans of futuristic culture.",
+        "href": "https://sonar.es",
+        "image": "https://sonar.es/_next/image?url=https%3A%2F%2Fstorage.googleapis.com%2Fpro-cms-bucket%2FHiro_Galerias_2_d5f9b0a08b%2FHiro_Galerias_2_d5f9b0a08b.png&w=3840&q=75"
+      },
+      {
+        "title": "🌴 Coachella – California, USA",
+        "desc": "One of the most talked-about festivals in the world. Fashion, pop culture, and legendary line-ups in the California desert, under the sun at the Empire Polo Club.",
+        "href": "https://www.coachella.com",
+        "image": "https://api.time.com/wp-content/uploads/2020/03/coachella-festival.jpg"
+      },
+      {
+        "title": "🔥 Burning Man – Black Rock Desert, USA",
+        "desc": "More than a festival, it’s a laboratory of artistic creation and human experimentation in the Nevada desert. Radicality, freedom, and bonfires guaranteed.",
+        "href": "https://burningman.org",
+        "image": "https://venga-store.com/cdn/shop/articles/burning_man_2025_2_6f9a1e58-1f1b-48b2-a1c0-14d31ececfcc.webp?v=1742839610"
+      },
+      {
+        "title": "🌍 Afrikaburn – South Africa",
+        "desc": "The African version of Burning Man, Afrikaburn invites you to total artistic immersion in the Tankwa Karoo desert. Radical creativity and collective spirit.",
+        "href": "https://www.afrikaburn.org",
+        "image": "https://im8hoursahead.com/wp-content/uploads/2017/06/lalala_3265-1-819x1024.jpg"
+      },
+      {
+        "title": "🌄 Meadows in the Mountains – Bulgaria",
+        "desc": "A festival perched in the Bulgarian mountains, where nature, alternative music, and a sense of community come together at sunrise.",
+        "href": "https://www.meadowsinthemountains.com",
+        "image": "https://www.vmcdn.ca/f/files/elorafergustoday/images/20230603mfestkk9.jpg;w=960"
+      }
+    ]
+  },
+  "testimonials": {
+    "title": "They say it best.",
+    "subtitle": "Journeys that leave a mark, memories that last. Here’s what our first GrooveNomads think.",
+    "list": [
+      {
+        "name": "Jonathan Yombo",
+        "role": "Techno fan – 27, Lyon",
+        "image": "https://randomuser.me/api/portraits/men/1.jpg",
+        "quote": "It’s the first time I’ve ever felt so understood organizing a trip. The tool is simple, fast, and I experienced an incredible festival thanks to them."
+      },
+      {
+        "name": "Yves Kalume",
+        "role": "Globe-trotter – 25, Brussels",
+        "image": "https://randomuser.me/api/portraits/men/6.jpg",
+        "quote": "GrooveNomad clearly changed my way of traveling. In just a few minutes, I had a complete trip fully aligned with my desires."
+      },
+      {
+        "name": "Yucel Faruksahan",
+        "role": "Curious partygoer – 23, Bordeaux",
+        "image": "https://randomuser.me/api/portraits/men/7.jpg",
+        "quote": "We just answered 3 questions in the chat and boom: the perfect trip. Top-notch festival, stylish accommodation, great food spot recommended. Approved 🔥"
+      },
+      {
+        "name": "Anonymous author",
+        "role": "First festival abroad – 21",
+        "image": "https://randomuser.me/api/portraits/men/8.jpg",
+        "quote": "I was a bit scared to go alone, but GrooveNomad made everything easier. I discovered a festival I never would have found on my own."
+      },
+      {
+        "name": "Shekinah Tshiokufila",
+        "role": "Alternative vibes lover – 26, Nantes",
+        "image": "https://randomuser.me/api/portraits/men/4.jpg",
+        "quote": "The service is super human and smooth. The proposed trip was awesome and even the options around the festival were tailored for me."
+      },
+      {
+        "name": "Oketa Fred",
+        "role": "Road trip team – 24, Lille",
+        "image": "https://randomuser.me/api/portraits/men/2.jpg",
+        "quote": "Simply the best way to travel for a festival. The chat is great, the recommendations are reliable, and you save a lot of time."
+      },
+      {
+        "name": "Zeki",
+        "role": "Electro lover – 29, Berlin",
+        "image": "https://randomuser.me/api/portraits/men/5.jpg",
+        "quote": "GrooveNomad is like a friend who knows all the good tips and organizes everything for you. I loved the tailored approach."
+      },
+      {
+        "name": "Joseph Kitheka",
+        "role": "Solo traveler – 30, Barcelona",
+        "image": "https://randomuser.me/api/portraits/men/9.jpg",
+        "quote": "I tried it for a festival in Portugal and it was perfect. I met lots of people there and everything was planned in advance, stress-free."
+      },
+      {
+        "name": "Khatab Wedaa",
+        "role": "Organizer at heart – 28, Rennes",
+        "image": "https://randomuser.me/api/portraits/men/10.jpg",
+        "quote": "I usually like to plan everything myself, but here I let go. And honestly, it was better than if I’d done it myself."
+      },
+      {
+        "name": "Rodrigo Aguilar",
+        "role": "Live music & backpack fan – 25, Lisbon",
+        "image": "https://randomuser.me/api/portraits/men/11.jpg",
+        "quote": "The best part? The mix between music and local discovery. I really felt like I was on a real trip, not just at a festival."
+      },
+      {
+        "name": "Eric Ampire",
+        "role": "Trip with friends – 23, Montreal",
+        "image": "https://randomuser.me/api/portraits/men/12.jpg",
+        "quote": "Big crush. We were able to travel as five, hassle-free, and experience an amazing festival. I recommend it to everyone."
+      },
+      {
+        "name": "Roland Tubonge",
+        "role": "Total discovery – 22, Lyon",
+        "image": "https://randomuser.me/api/portraits/men/13.jpg",
+        "quote": "I thought I was just going to party... but it was much more than that. A rich trip, simple to organize and super well thought out."
+      }
+    ]
+  },
+  "cta": {
+  "title": "🌍 The stage is waiting. Your journey starts now.",
+  "subtitle": "Answer a few questions, discover your dream destination, and get ready for adventure.",
+  "placeholder": "Describe my wish...",
+  "button": "Send"
+},
+"footer": {
+  "links": {
+    "service": "Service",
+    "experiences": "Experiences",
+    "avis": "Reviews"
+  },
+  "copyright": "© {year} GrooveNomad, All rights reserved"
+},
+  "chat": {
+    "title": "GrooveNomad chat",
+    "loading": "Loading chat…"
+  }
+}
