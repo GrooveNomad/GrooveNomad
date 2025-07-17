@@ -1,32 +1,24 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import { PartyPopper, SendHorizonal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TextEffect } from "@/components/ui/text-effect";
 import { AnimatedGroup } from "@/components/ui/animated-group";
 import { HeroHeader } from "./header";
 import Image from "next/image";
-
-// const transitionVariants = {
-//   item: {
-//     hidden: {
-//       opacity: 0,
-//       filter: "blur(12px)",
-//       y: 12,
-//     },
-//     visible: {
-//       opacity: 1,
-//       filter: "blur(0px)",
-//       y: 0,
-//       transition: {
-//         type: "spring",
-//         bounce: 0.3,
-//         duration: 1.5,
-//       },
-//     },
-//   },
-// };
+import { useRouter } from "next/navigation";
 
 export default function HeroSection() {
+  const [inputValue, setInputValue] = useState("");
+  const router = useRouter();
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!inputValue.trim()) return;
+    router.push(`/chat?message=${encodeURIComponent(inputValue)}`);
+  };
+
   return (
     <>
       <HeroHeader />
@@ -86,14 +78,16 @@ export default function HeroSection() {
                 }}
                 className="mt-12"
               >
-                <form action="" className="mx-auto max-w-sm">
+                <form onSubmit={handleSubmit} className="mx-auto max-w-sm">
                   <div className="bg-background has-[input:focus]:ring-muted relative grid grid-cols-[1fr_auto] items-center rounded-[calc(var(--radius)+0.5rem)] border pr-2 shadow shadow-zinc-950/5 has-[input:focus]:ring-2">
                     <PartyPopper className="pointer-events-none absolute inset-y-0 left-4 my-auto size-4" />
 
                     <input
                       placeholder="Décrire mon envie…"
                       className="h-12 w-full bg-transparent pl-12 focus:outline-none"
-                      type="email"
+                      type="text"
+                      value={inputValue}
+                      onChange={(e) => setInputValue(e.target.value)}
                     />
 
                     <div className="md:pr-1.5 lg:pr-0">
@@ -101,6 +95,7 @@ export default function HeroSection() {
                         aria-label="submit"
                         size="sm"
                         className="rounded-(--radius)"
+                        type="submit"
                       >
                         <span className="hidden md:block">Envoyer</span>
                         <SendHorizonal
