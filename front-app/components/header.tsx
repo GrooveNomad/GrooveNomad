@@ -11,6 +11,7 @@ const menuItems = [
   { name: "Le service", href: "#services" },
   { name: "Les expériences", href: "#experiences" },
   { name: "Les avis", href: "#avis" },
+  { name: "FAQ", href: "#faq" },
 ];
 
 export const HeroHeader = () => {
