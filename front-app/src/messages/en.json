@@ -3,7 +3,8 @@
     "menu": {
       "service": "Service",
       "experiences": "Experiences",
-      "avis": "Reviews"
+      "avis": "Reviews",
+      "faq": "FAQ"
     },
     "buttons": {
       "start": "Get started"
@@ -181,12 +182,66 @@
   "links": {
     "service": "Service",
     "experiences": "Experiences",
-    "avis": "Reviews"
+    "avis": "Reviews",
+    "faq": "FAQ"
   },
   "copyright": "© {year} GrooveNomad, All rights reserved"
 },
   "chat": {
     "title": "GrooveNomad chat",
-    "loading": "Loading chat…"
+    "loading": "Loading chat…",
+    "placeholder": "Describe your wish..."
+  },
+  "FAQs": {
+  "title": "Frequently Asked Questions",
+  "subtitle": "Got questions about GrooveNomad? We answer them here! If you don’t find your answer, contact us directly – we’re super responsive.",
+  "items": [
+    {
+      "id": "item-1",
+      "question": "What is GrooveNomad?",
+      "answer": "GrooveNomad is a platform that helps you organize your trip around the world’s best festivals. We offer all-in-one experiences: tickets, accommodation, transport and local discoveries – all personalized for you."
+    },
+    {
+      "id": "item-2",
+      "question": "Does GrooveNomad sell festival tickets?",
+      "answer": "No, we don’t sell festival tickets directly. However, we show you where to buy them and guide you through the process so you don’t miss out! We also help you organize everything around it: transport, accommodation, tips, etc."
+    },
+    {
+      "id": "item-3",
+      "question": "Can I fully personalize my trip?",
+      "answer": "Yes, that’s the core of our mission. You can choose your transport mode, accommodation (hostel, camping, hotel…), add cultural or party options, and even build your stay with our AI assistant if you want a hand."
+    },
+    {
+      "id": "item-4",
+      "question": "Does GrooveNomad work worldwide?",
+      "answer": "We focus first on festivals in Europe and some major international events like Coachella or Burning Man. But we regularly add new destinations based on community suggestions."
+    },
+    {
+      "id": "item-5",
+      "question": "Is GrooveNomad free to use?",
+      "answer": "Yes, our assistant and platform are free for users. If you book your transport or accommodation through us, we take a small commission from our partners, not from you."
+    },
+    {
+      "id": "item-6",
+      "question": "I travel alone – is it suitable?",
+      "answer": "Absolutely! We help you feel comfortable traveling solo, and you can even join groups of festival-goers heading to the same destination. A great way to meet people from the start!"
+    },
+    {
+      "id": "item-7",
+      "question": "Do you offer all-inclusive packages?",
+      "answer": "Yes, some partner festivals offer packages with accommodation + transport + activities. You can also build your own package with our smart assistant."
+    },
+    {
+      "id": "item-8",
+      "question": "Does GrooveNomad organize group trips?",
+      "answer": "We don’t (yet) manage group trips as an agency, but we allow you to create a shared itinerary and book together. Perfect for going with friends without the hassle of organizing everything."
+    }
+  ]
+},
+  "languageSwitcher": {
+    "label": "Language",
+    "fr": "French",
+    "en": "English",
+    "es": "Spanish"
   }
 }

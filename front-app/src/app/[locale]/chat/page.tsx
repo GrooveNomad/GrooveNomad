@@ -1,3 +1,5 @@
+"use client"
+
 import { Suspense } from "react";
 import ClientOnlyWrapper from "@/src/components/ClientOnlyWrapper";
 import { useTranslations } from "next-intl";

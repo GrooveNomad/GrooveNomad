@@ -20,6 +20,7 @@ import { AudioVisualizer } from "@/src/components/ui/audio-visualizer";
 import { Button } from "@/src/components/ui/button";
 import { FilePreview } from "@/src/components/ui/file-preview";
 import { InterruptPrompt } from "@/src/components/ui/interrupt-prompt";
+import { useTranslations } from "next-intl";
 
 interface MessageInputBaseProps
   extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
@@ -44,6 +45,7 @@ interface MessageInputWithAttachmentsProps extends MessageInputBaseProps {
 type MessageInputProps =
   | MessageInputWithoutAttachmentProps
   | MessageInputWithAttachmentsProps;
+
 
 export function MessageInput({
   placeholder = "Décris ton envie...",
@@ -186,6 +188,8 @@ export function MessageInput({
     dependencies: [props.value, showFileList],
   });
 
+  const t = useTranslations("chat");
+
   return (
     <div
       className="relative flex w-full"
@@ -209,7 +213,7 @@ export function MessageInput({
         <div className="relative flex-1">
           <textarea
             aria-label="Write your prompt here"
-            placeholder={placeholder}
+            placeholder= {t("placeholder")}
             ref={textAreaRef}
             onPaste={onPaste}
             onKeyDown={onKeyDown}
