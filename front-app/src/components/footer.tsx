@@ -19,6 +19,12 @@ const links = [
         title: 'Les avis',
         href: '#avis',
     }
+    ,
+    {
+        id: 'faq',
+        title: 'FAQ',
+        href: '#faq',
+    }
 ]
 
 export default function FooterSection() {

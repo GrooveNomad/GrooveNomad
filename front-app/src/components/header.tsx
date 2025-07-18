@@ -7,7 +7,7 @@ import React from "react";
 import { cn } from "@/src/lib/utils";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
-
+import LanguageSwitcher from "@/src/components/languageSwitcher";
 
 export const HeroHeader = () => {
   const [menuState, setMenuState] = React.useState(false);
@@ -114,6 +114,7 @@ export const HeroHeader = () => {
                 >
                     {t('buttons.start')}
                 </Button>
+                <LanguageSwitcher />
               </div>
             </div>
           </div>

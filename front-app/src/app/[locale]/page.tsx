@@ -4,7 +4,7 @@ import FooterSection from "@/src/components/footer";
 import { Gallery4 } from "@/src/components/gallery4";
 import HeroSection from "@/src/components/hero-section";
 import WallOfLoveSection from "@/src/components/testimonials";
-import PageLayout from "./layout";
+import FAQsTwo from "@/src/components/faqs-2";
 export default function Home() {
   return (
     <>
@@ -13,6 +13,7 @@ export default function Home() {
       <Gallery4 />
       <WallOfLoveSection />
       <CallToAction />
+      <FAQsTwo />
       <FooterSection />
     </>
   );
