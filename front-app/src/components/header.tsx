@@ -7,21 +7,23 @@ import React from "react";
 import { cn } from "@/src/lib/utils";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
 import LanguageSwitcher from "@/src/components/languageSwitcher";
 
 export const HeroHeader = () => {
   const [menuState, setMenuState] = React.useState(false);
   const [isScrolled, setIsScrolled] = React.useState(false);
   const router = useRouter();
-  const t = useTranslations('header');
+  const t = useTranslations("header");
 
   const menuItems = [
-  { name: t('menu.service'), href: "#services" },
-  { name: t('menu.experiences'), href: "#experiences" },
-  { name: t('menu.avis'), href: "#avis" },
-  { name: t('menu.faq'), href: "#faq" },
-];
+    { name: t("menu.service"), href: "#services" },
+    { name: t("menu.experiences"), href: "#experiences" },
+    { name: t("menu.avis"), href: "#avis" },
+    { name: t("menu.faq"), href: "#faq" },
+  ];
 
+  const locale = useLocale();
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -32,7 +34,7 @@ export const HeroHeader = () => {
   }, []);
 
   const onClick = () => {
-    router.push("/chat");
+    router.push(`/${locale}/chat`);
   };
 
   return (
@@ -60,7 +62,7 @@ export const HeroHeader = () => {
 
               <button
                 onClick={() => setMenuState(!menuState)}
-                aria-label={menuState ? t('aria.close') : t('aria.open')}
+                aria-label={menuState ? t("aria.close") : t("aria.open")}
                 className="relative z-20 -m-2.5 -mr-4 block cursor-pointer p-2.5 lg:hidden"
               >
                 <Menu className="in-data-[state=active]:rotate-180 in-data-[state=active]:scale-0 in-data-[state=active]:opacity-0 m-auto size-6 duration-200" />
@@ -104,7 +106,7 @@ export const HeroHeader = () => {
                   size="sm"
                   className="lg:hidden"
                 >
-                  {t('buttons.start')}
+                  {t("buttons.start")}
                 </Button>
 
                 <Button
@@ -112,7 +114,7 @@ export const HeroHeader = () => {
                   size="sm"
                   className="hidden lg:inline-flex"
                 >
-                    {t('buttons.start')}
+                  {t("buttons.start")}
                 </Button>
                 <LanguageSwitcher />
               </div>

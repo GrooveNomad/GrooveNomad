@@ -16,7 +16,7 @@ export default function CallToAction() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!inputValue.trim()) return;
-    router.push(`/${locale}/chat`);
+    router.push(`/${locale}/chat?message=${encodeURIComponent(inputValue)}`);
   };
 
   return (
@@ -26,9 +26,7 @@ export default function CallToAction() {
           <h2 className="text-balance text-4xl font-semibold lg:text-5xl">
             {t("title")}
           </h2>
-          <p className="mt-4">
-            {t("subtitle")}
-          </p>
+          <p className="mt-4">{t("subtitle")}</p>
 
           <form
             onSubmit={handleSubmit}
@@ -38,7 +36,7 @@ export default function CallToAction() {
               <PartyPopper className="pointer-events-none absolute inset-y-0 left-4 my-auto size-4" />
 
               <input
-                placeholder= {t("placeholder")}
+                placeholder={t("placeholder")}
                 className="h-12 w-full bg-transparent pl-12 focus:outline-none"
                 type="text"
                 value={inputValue}
